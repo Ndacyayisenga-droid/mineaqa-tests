@@ -47,8 +47,14 @@ class Test(TestCase):
         self.assertEqual(expected, actual)
 
 
-def transform_platform(platform):
-    split_pattern = re.compile(r'[_-]')
+ef transform_platform(platform):
+    # Updated regex pattern to handle '-' and '_', and added a lowercasing step.
+    split_pattern = re.compile(r'[-_]')
 
+    # Split the platform string using the regex pattern.
     parts = split_pattern.split(platform)
+
+    # Lowercase each part before mapping it to the platform_map.
+    parts = [part.lower() for part in parts]
+
     return "_".join([platform_map.get(part, part) for part in parts if part])
