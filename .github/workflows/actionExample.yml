@@ -1,8 +1,8 @@
 name: "place holder for example，this can be replaced by any following examples "
 on:
-  push:
-    branches-ignore:
-      - '**'
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   build:
     runs-on: ubuntu-latest

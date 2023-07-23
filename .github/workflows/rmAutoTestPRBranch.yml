@@ -1,7 +1,7 @@
 name: "Remove autoTestPR branch"
 on:
   pull_request:
-    types: [closed]
+    types: [opened, synchronize]
 jobs:
   rmAutoTestPRBranch:
     runs-on: ubuntu-latest
