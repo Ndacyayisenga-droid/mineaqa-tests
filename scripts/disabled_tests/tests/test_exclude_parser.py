@@ -48,8 +48,7 @@ class Test(TestCase):
 
 
 def transform_platform(platform):
-    # Updated regex pattern to handle 'alpine-linux_aarch64' correctly
-    split_pattern = re.compile(r'(?<!x86)(?<!alpine)(?<!alpine-linux)')
+    split_pattern = re.compile(r'[_-]')
 
     parts = split_pattern.split(platform)
     return "_".join([platform_map.get(part, part) for part in parts if part])
