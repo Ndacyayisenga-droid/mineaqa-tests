@@ -47,7 +47,7 @@ class Test(TestCase):
         self.assertEqual(expected, actual)
 
 
-ef transform_platform(platform):
+def transform_platform(platform):
     # Updated regex pattern to handle '-' and '_', and added a lowercasing step.
     split_pattern = re.compile(r'[-_]')
 
