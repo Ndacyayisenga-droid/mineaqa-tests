@@ -171,7 +171,8 @@ def transform_platform(os_arch_platform: str) -> str:
     split_list = split_pattern.split(os_arch_platform)
 
     if len(split_list) != 2:
-        raise ValueError(f"Cannot split {os_arch_platform!r} over regex pattern {split_pattern.pattern!r}")
+        raise ValueError(f"Cannot split {os_arch_platform!r} over regex pattern {split_pattern.pattern!r}. "
+                         f"Expected exactly 2 elements, but got {len(split_list)} elements.")
 
     os_name, arch_name = split_list
 
