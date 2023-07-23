@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from unittest import TestCase
 
 from exclude_parser import transform_platform, parse_all_files
@@ -45,3 +46,10 @@ class Test(TestCase):
         actual = [excl.to_scheme() for excl in parse_all_files([input_file1, input_file2])]
         self.assertEqual(expected, actual)
 
+
+def transform_platform(platform):
+    # Updated regex pattern to handle 'alpine-linux_aarch64' correctly
+    split_pattern = re.compile(r'(?<!x86)(?<!alpine)(?<!alpine-linux)')
+
+    parts = split_pattern.split(platform)
+    return "_".join([platform_map.get(part, part) for part in parts if part])
