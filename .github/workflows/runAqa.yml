@@ -1,7 +1,8 @@
 name: "PR Comment Build Action for aqa-tests"
 on:
-  issue_comment:
-    types: [created]
+  pull_request:
+    types: [opened, synchronize]
+
 jobs:
   parseComment:
     runs-on: ubuntu-latest
