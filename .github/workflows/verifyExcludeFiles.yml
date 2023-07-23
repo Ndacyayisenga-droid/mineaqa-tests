@@ -5,6 +5,11 @@ on:
     types: [opened, synchronize]
 
 jobs:
+  getBuildLists:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
   testDisabledTests:
     runs-on: ubuntu-latest
     needs: getBuildLists
