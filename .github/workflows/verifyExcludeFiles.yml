@@ -3,6 +3,8 @@ name: Test Disabled Tests
 on:
   pull_request:
     types: [opened, synchronize]
+    paths:
+      - 'openjdk/excludes/**'
 
 jobs:
   getBuildLists:
