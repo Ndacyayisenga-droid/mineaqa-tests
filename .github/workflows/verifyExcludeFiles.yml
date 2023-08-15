@@ -1,0 +1,38 @@
+name: PR Directory and Files Change Check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - 'openjdk/excludes'
+      - 'playlist.xml'
+      - 'scripts/disabled_tests/exclude_files/*.txt'
+
+jobs:
+  verifyDisabledTests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+
+      - name: Install dependencies for disabled tests
+        run: pip install -r scripts/disabled_tests/requirements.txt
+
+      - name: Run tests for exclude file formatting
+        working-directory: scripts/disabled_tests
+        run: |
+          python -m unittest tests/test_exclude_file_format.py
+
+      - name: Run tests for disabled_tests scripts
+        working-directory: scripts/disabled_tests/tests
+        run: |
+          python -m unittest test_exclude_parser.py
+          python -m unittest test_issue_filter.py
+          python -m unittest test_issue_status.py
+          python -m unittest test_playlist_parser.py
